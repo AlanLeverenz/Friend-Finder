@@ -195,25 +195,25 @@
 
   <script type="text/javascript">
     // Chosen CSS
-    // var config = {
-    //   ".chosen-select": {},
-    //   ".chosen-select-deselect": {
-    //     allow_single_deselect: true
-    //   },
-    //   ".chosen-select-no-single": {
-    //     disable_search_threshold: 10
-    //   },
-    //   ".chosen-select-no-results": {
-    //     no_results_text: "Oops, nothing found!"
-    //   },
-    //   ".chosen-select-width": {
-    //     width: "95%"
-    //   }
-    // };
+    var config = {
+      ".chosen-select": {},
+      ".chosen-select-deselect": {
+        allow_single_deselect: true
+      },
+      ".chosen-select-no-single": {
+        disable_search_threshold: 10
+      },
+      ".chosen-select-no-results": {
+        no_results_text: "Oops, nothing found!"
+      },
+      ".chosen-select-width": {
+        width: "95%"
+      }
+    };
 
-    // for (var selector in config) {
-    //   $(selector).chosen(config[selector]);
-    // }
+    for (var selector in config) {
+      $(selector).chosen(config[selector]);
+    }
 
     // Capture the form inputs
     $("#submit").on("click", function(event) {
@@ -263,14 +263,16 @@
 
         console.log(userData);
 
+        var currentURL = window.location.origin;
+
         // AJAX post the data to the friends API.
-        $.post("/api/friends", userData, function(data) {
-
+        $.post(currentURL + "/api/friends", userData, function(data) {
           alert("GETTING DATA BACK FROM SURVEY POST");
-
           // Grab the result from the AJAX post so that the best match's name and photo are displayed.
           $("#match-name").text(data.name);
           $("#match-img").attr("src", data.photo);
+          // added style attribute to limit the size of the image
+          $("#match-img").attr("style", "width:400px");
 
           // Show the modal with the best match
           $("#results-modal").modal("toggle");
@@ -279,6 +281,8 @@
       } else {
         alert("Please fill out all fields before submitting!");
       }
+      return false;
+
     });
   </script>
 
