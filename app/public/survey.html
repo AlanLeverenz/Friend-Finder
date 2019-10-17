@@ -88,7 +88,7 @@
 
 
     <h3><strong>Question 5</strong></h3>
-    <h4>You choose not to agree when you know you are right.</h4>
+    <h4>You don't agree when you know you are right.</h4>
     <select class="chosen-select" id="q5">
       <option value=""></option>
       <option value="1">1 (Strongly Disagree)</option>
@@ -100,7 +100,7 @@
 
 
     <h3><strong>Question 6</strong></h3>
-    <h4>You can accept things without needing proof.</h4>
+    <h4>You can accept some things without needing proof.</h4>
     <select class="chosen-select" id="q6">
       <option value=""></option>
       <option value="1">1 (Strongly Disagree)</option>
@@ -194,7 +194,7 @@
   </div>
 
   <script type="text/javascript">
-    // Chosen CSS
+    // Chosen CSS to improve form appearance
     var config = {
       ".chosen-select": {},
       ".chosen-select-deselect": {
@@ -219,8 +219,6 @@
     $("#submit").on("click", function(event) {
       event.preventDefault();
 
-      alert("JUST CLICKED ON THE SUBMIT");
-
       // Form validation
       function validateForm() {
         var isValid = true;
@@ -241,8 +239,6 @@
       // If all required fields are filled
       if (validateForm()) {
 
-        alert("FORM IS VALID");
-
         // Create an object for the user"s data
         var userData = {
           name: $("#name").val(),
@@ -261,34 +257,27 @@
           ]
         };
 
-        console.log(userData);
-
         var currentURL = window.location.origin;
 
         // AJAX post the data to the friends API.
         $.post(currentURL + "/api/friends", userData, function(data) {
-          alert("GETTING DATA BACK FROM SURVEY POST");
-          // Grab the result from the AJAX post so that the best match's name and photo are displayed.
+
+          // Grab the result from the AJAX post.
           $("#match-name").text(data.name);
           $("#match-img").attr("src", data.photo);
-          // added style attribute to limit the size of the image
+          // added style attribute to fit the image width within the modal dialog
           $("#match-img").attr("style", "width:400px");
-
           // Show the modal with the best match
           $("#results-modal").modal("toggle");
 
         });
       } else {
-        alert("Please fill out all fields before submitting!");
+        alert("Seems you didn't fill out all the fields.");
       }
       return false;
 
     });
   </script>
-
-<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> -->
 
 </body>
 

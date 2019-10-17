@@ -1,4 +1,4 @@
-var friends = require("../data/friends");
+var friends = require("../data/friends.js");
 
 module.exports = function(app) {
 
@@ -14,24 +14,18 @@ module.exports = function(app) {
             friendDifference: 100
         }
 
-        console.log(req.body);
+        // console.log(req.body);
 
         // parse the user's survey post
         var userData = req.body;
         var userScores = userData.scores;
 
-        console.log(userScores);
-
         // variable that calculates the difference in scores
         var totalDifference = 0;
 
         for (var i=0; i < friends.length; i++) {
-
-            console.log(friends[i]);
             totalDifference = 0;
-
-            for (var j = 0; j < friends[i].scores[j]; j++ ) {
-
+            for (var j = 0; j < friends[i].scores.length; j++ ) {
             //calc difference in scores
             totalDifference += Math.abs(parseInt(userScores[j]) - parseInt(friends[i].scores[j]));
             
@@ -45,7 +39,7 @@ module.exports = function(app) {
             }
         }
 
-        // add to friends db
+        // add to the friends array
         friends.push(userData);
 
         //return a JSON to be used in HTML page
