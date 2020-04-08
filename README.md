@@ -8,10 +8,10 @@
 
 ## How to run the app
 
-    From the Home page, click on the __Go to Survey__ button to take the survey. 
-    Once all the questions have been answered, click on the __Submit__ button at the bottom and the closest match from the friends database will be displayed.
+    From the Home page, click on the Go to Survey button to take the survey. 
+    Once all the questions have been answered, click on the Submit button at the bottom and the closest match from the friends database will be displayed.
     
-    To see the list of friends, click on the __API Friends List__ link at the bottom of the page. 
+    To see the list of friends, click on the API Friends List link at the bottom of the page. 
     To return to the *Home* page click on the back arrow in your browser.
 
 ## Technologies
